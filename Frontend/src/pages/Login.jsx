@@ -16,7 +16,7 @@ const Login = () => {
       dispatch(setCredentials(res.data));
       navigate("/dashboard");
     } catch (error) {
-      alert(error.response.data.message || "Login failed");
+      console.error(error);
     }
   };
 
