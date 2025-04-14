@@ -23,8 +23,21 @@ const createNote = async (req, res) => {
 
 //GET ALL NOTES OF LOGGED IN USER
 const getNotes = async (req, res) => {
+  const { tag, search } = req.query;
   try {
-    const notes = await Note.find({ user: req.user._id }).sort({
+    const query = {
+      user: req.user._id,
+    };
+    if (tag) {
+      query.tags = tag;
+    }
+    if (search) {
+      query.$or = [
+        { title: { $regex: search, $options: "i" } },
+        { content: { $regex: search, $options: "i" } },
+      ];
+    }
+    const notes = await Note.find(query).sort({
       updatedAt: -1,
     });
     res.status(200).json(notes);
