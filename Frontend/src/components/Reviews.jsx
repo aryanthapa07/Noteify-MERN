@@ -23,7 +23,11 @@ const Reviews = ({ darkMode }) => {
 
   return (
     <section className="py-16 px-6 text-center">
-      <h2 className={`text-3xl font-semibold mb-10 ${darkMode ? "text-white" : "text-gray-800"}`}>
+      <h2
+        className={`text-3xl font-semibold mb-10 ${
+          darkMode ? "text-white" : "text-gray-800"
+        }`}
+      >
         What users say
       </h2>
       <div className="relative w-full max-w-3xl mx-auto overflow-hidden">
@@ -36,7 +40,13 @@ const Reviews = ({ darkMode }) => {
             transition={{ duration: 0.5 }}
             className="w-full bg-white/20 backdrop-blur-md border border-white/30 rounded-lg p-6 shadow-md"
           >
-            <p className="text-white text-lg italic">"{reviews[currentIndex].review}"</p>
+            <p
+              className={`${
+                darkMode ? "text-white" : "text-gray-800"
+              } text-lg italic`}
+            >
+              "{reviews[currentIndex].review}"
+            </p>
             <h4 className="mt-4 font-semibold text-orange-300 text-xl">
               – {reviews[currentIndex].name}
             </h4>
