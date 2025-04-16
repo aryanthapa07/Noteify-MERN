@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { setCredentials } from "../features/auth/authSlice";
 import { Link, useNavigate } from "react-router-dom";
 import NoteifyLogo from "../assets/NoteifyLogo.png";
+import { useDarkMode } from "../context/DarkModeContext";
 
 import {
   EyeIcon,
@@ -16,7 +17,7 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const [darkMode, setDarkMode] = useState(true);
+  const { darkMode, toggleDarkMode } = useDarkMode();
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -36,7 +37,7 @@ const Login = () => {
       className={`${
         darkMode
           ? "bg-gradient-to-br from-[#1f1c2c] to-[#928dab]"
-          : "bg-gradient-to-br from-gray-100 to-white"
+          : "bg-gradient-to-br from-[#fdfcfb] to-[#e2d1c3]"
       } min-h-screen flex items-center justify-center transition-all duration-300`}
     >
       <div
@@ -49,7 +50,7 @@ const Login = () => {
         {/* Dark Mode Toggle */}
         <div className="flex justify-end mb-4">
           <button
-            onClick={() => setDarkMode(!darkMode)}
+            onClick={toggleDarkMode}
             className="p-2 rounded-full bg-orange-400 text-white hover:bg-orange-500 transition"
           >
             {darkMode ? (
